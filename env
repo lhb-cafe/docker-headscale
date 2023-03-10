@@ -1,0 +1,10 @@
+WD=${RWD}/${DOCKER_SERVICE}
+
+DOCKER_IMG="headscale/headscale headscale serve"
+DOCKER_RUN_ARGS="-v ${WD}/config:/etc/headscale/ \
+		 -u root \
+                 -p 8080:8080 \
+  		 -p 9090:9090"
+
+SERVICE_SHELL=/bin/bash
+

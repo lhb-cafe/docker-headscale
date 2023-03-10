@@ -1,0 +1,2 @@
+Before running the service, modify the config.yaml to use your correct server url. Review the config to confirm it works on your set up (ip subnet address, ports, etc)
+
