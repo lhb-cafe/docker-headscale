@@ -1,2 +1,38 @@
-Before running the service, modify the config.yaml to use your correct server url. Review the config to confirm it works on your set up (ip subnet address, ports, etc)
+Headscale/Tailscale Introduction:
+- https://github.com/juanfont/headscale#readme
+
+Headscale official documentation:
+- https://github.com/juanfont/headscale/tree/main/docs
+
+This submodule is based on the instruction in
+- https://github.com/juanfont/headscale/blob/main/docs/running-headscale-container.md
+
+-------------------
+
+Usage
+
+Before running this service, modify the config.yaml to use your correct server url. Modify the config to your own fit, but notice that customer ip-prefix may not take effect if the tailscale client does not support it. Please read the comments in the config.yaml file for more details.
+
+Submodule setup
+1. Clone the main docker service system
+	- git clone https://github.com/lhb-cafe/docker-service
+2. Init and pull the submodules
+	- git submodule init
+	- git submodule update
+
+Headscale server setup:
+1. Set your actual server url in config.yaml
+2. Start the service:
+	- docker_service.sh headscale restart
+3. Use the headscale.sh script similar to the headscale tool. It proxies the command to headscale inside the contianer through `docker exec`. e.g.,
+	- headscale.sh -h
+	- headscale.sh users create MYUSER
+4. Follow the instruction in https://github.com/juanfont/headscale/blob/main/docs/running-headscale-container.md to connect from clients
+
+-------------------
+
+Further references
+
+Headscale - Real World Example
+- https://blog.stoege.net/posts/headscale2/
 
