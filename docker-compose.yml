@@ -1,0 +1,12 @@
+version: '2.0'
+services:
+    headscale :
+        container_name: ${DOCKER_SERVICE} 
+        restart: always
+        ports:
+            - '8080:8080'
+            - '9090:9090'
+        volumes:
+            - './config:/etc/headscale/'
+        image: headscale/headscale
+        command: headscale serve
