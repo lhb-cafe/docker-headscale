@@ -23,7 +23,10 @@ Submodule setup
 Headscale server setup:
 1. Set your actual server url in config.yaml
 2. Start the service:
-	- docker_service.sh headscale restart
+	run as a submodule of docker-service:
+		- docker_service.sh headscale restart
+	or, run directly as a standalone service:
+		- DOCKER_SERVICE=headscale docker-compose up -d
 3. Use the headscale.sh script similar to the headscale tool. It proxies the command to headscale inside the contianer through `docker exec`. e.g.,
 	- headscale.sh -h
 	- headscale.sh users create MYUSER
