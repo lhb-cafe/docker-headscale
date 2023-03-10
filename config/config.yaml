@@ -22,7 +22,7 @@ listen_addr: 0.0.0.0:8080
 # to keep this endpoint private to your internal
 # network
 #
-metrics_listen_addr: 127.0.0.1:9090
+metrics_listen_addr: 0.0.0.0:9090
 
 # Address to listen for gRPC.
 # gRPC is used for controlling a headscale server
@@ -69,7 +69,7 @@ noise:
 # IPv6: https://github.com/tailscale/tailscale/blob/22ebb25e833264f58d7c3f534a8b166894a89536/net/tsaddr/tsaddr.go#LL81C52-L81C71
 # IPv4: https://github.com/tailscale/tailscale/blob/22ebb25e833264f58d7c3f534a8b166894a89536/net/tsaddr/tsaddr.go#L33
 ip_prefixes:
-  - fd7a:115c:a1e0::/48
+  # - fd7a:115c:a1e0::/48
   - 192.168.103.0/24
 
 # DERP is a relay system that Tailscale uses when a direct
@@ -213,7 +213,8 @@ dns_config:
 
   # List of DNS servers to expose to clients.
   nameservers:
-    - 1.1.1.1
+    - 114.114.114.114
+    - 233.5.5.5
 
   # NextDNS (see https://tailscale.com/kb/1218/nextdns/).
   # "abc123" is example NextDNS ID, replace with yours.
