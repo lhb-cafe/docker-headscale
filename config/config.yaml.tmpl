@@ -10,7 +10,7 @@
 #
 # https://myheadscale.example.com:443
 #
-server_url: https://cloud.lhb.cafe:8080
+server_url: https://${HOST_NAME}:8080
 
 # Address to listen to / bind to on the server
 #
@@ -280,7 +280,7 @@ unix_socket_permission: "0770"
 #   # Alternatively, set `client_secret_path` to read the secret from the file.
 #   # It resolves environment variables, making integration to systemd's
 #   # `LoadCredential` straightforward:
-#   client_secret_path: "/oidc_client_secret"
+#   client_secret_path: "${CREDENTIALS_DIRECTORY}/oidc_client_secret"
 #   # client_secret and client_secret_path are mutually exclusive.
 #
 #   # The amount of time from a node is authenticated with OpenID until it
