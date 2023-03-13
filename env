@@ -1,3 +1,12 @@
+WD=${RWD}/${DOCKER_SERVICE}
+
 COMPOSE=1
 SERVICE_SHELL=/bin/bash
 
+pre_start() {
+	envsubst < ${WD}/config/config.yaml.tmpl > ${WD}/config/config.yaml
+}
+
+post_stop() {
+	rm ${WD}/config/config.yaml
+}
