@@ -10,7 +10,7 @@
 #
 # https://myheadscale.example.com:443
 #
-server_url: http://cloud.lhb.cafe:8080
+server_url: https://cloud.lhb.cafe:8080
 
 # Address to listen to / bind to on the server
 #
@@ -82,7 +82,7 @@ derp:
   server:
     # If enabled, runs the embedded DERP server and merges it into the rest of the DERP config
     # The Headscale server_url defined above MUST be using https, DERP requires TLS to be in place
-    enabled: false
+    enabled: true
 
     # Region ID to use for the embedded DERP server.
     # The local DERP prevails if the region ID collides with other region ID coming from
@@ -111,7 +111,7 @@ derp:
   #
   # paths:
   #   - /etc/headscale/derp-example.yaml
-  paths: []
+  paths: [/etc/headscale/derp.yaml]
 
   # If enabled, a worker will be set up to periodically
   # refresh the given sources and update the derpmap
@@ -182,11 +182,11 @@ tls_letsencrypt_challenge_type: HTTP-01
 # When HTTP-01 challenge is chosen, letsencrypt must set up a
 # verification endpoint, and it will be listening on:
 # :http = port 80
-tls_letsencrypt_listen: ":http"
+tls_letsencrypt_listen: ":8080"
 
 ## Use already defined certificates:
-tls_cert_path: ""
-tls_key_path: ""
+tls_cert_path: "cert/tls.crt"
+tls_key_path: "cert/tls.key"
 
 log:
   # Output formatting for logs: text or json
@@ -280,7 +280,7 @@ unix_socket_permission: "0770"
 #   # Alternatively, set `client_secret_path` to read the secret from the file.
 #   # It resolves environment variables, making integration to systemd's
 #   # `LoadCredential` straightforward:
-#   client_secret_path: "${CREDENTIALS_DIRECTORY}/oidc_client_secret"
+#   client_secret_path: "/oidc_client_secret"
 #   # client_secret and client_secret_path are mutually exclusive.
 #
 #   # The amount of time from a node is authenticated with OpenID until it

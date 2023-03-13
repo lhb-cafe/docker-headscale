@@ -1,0 +1,12 @@
+regions:
+  900:
+    regionid: 999
+    regioncode: headscale
+    regionname: Headscale Embedded DERP
+    nodes:
+      - name: 999a
+        regionid: 999
+        hostname: cloud.lhb.cafe
+        stunport: 3478
+        stunonly: false
+        derpport: 12345
