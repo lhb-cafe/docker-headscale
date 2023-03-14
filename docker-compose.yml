@@ -10,3 +10,9 @@ services:
             - './config:/etc/headscale/'
         image: headscale/headscale
         command: headscale serve
+    headscale-ui:
+        container_name: headscale-ui
+        image: ghcr.io/gurucomputing/headscale-ui:latest
+        restart: always
+        ports:
+            - '8081:443'
