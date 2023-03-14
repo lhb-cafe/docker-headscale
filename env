@@ -5,8 +5,10 @@ SERVICE_SHELL=/bin/bash
 
 pre_start() {
 	envsubst < ${WD}/config/config.yaml.tmpl > ${WD}/config/config.yaml
+	envsubst < ${WD}/config/derp.yaml.tmpl > ${WD}/config/derp.yaml
 }
 
 post_stop() {
 	rm ${WD}/config/config.yaml
+	rm ${WD}/config/derp.yaml
 }
