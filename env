@@ -2,6 +2,7 @@ WD=${RWD}/${DOCKER_SERVICE}
 
 COMPOSE=1
 SERVICE_SHELL=/bin/bash
+SUBDOMAIN=vpn
 
 pre_start() {
 	envsubst < ${WD}/config/config.yaml.tmpl > ${WD}/config/config.yaml
