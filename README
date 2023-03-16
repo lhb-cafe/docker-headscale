@@ -11,26 +11,33 @@ This submodule is based on the instruction in
 
 Usage
 
-Before running this service, modify the config.yaml to use your correct server url. Modify the config to your own fit, but notice that customer ip-prefix may not take effect if the tailscale client does not support it. Please read the comments in the config.yaml file for more details.
+Modify the config template to suit your need, but notice that customer ip-prefix may not take effect if the tailscale client does not support it. Please read the comments in the config.yaml file for more details.
 
 Submodule setup
 1. Clone the main docker service system
 	- git clone https://github.com/lhb-cafe/docker-service
-2. Init and pull the submodules
+2. Modify global_env file with your top-level domain
+3. Init and pull the submodules
 	- git submodule init
 	- git submodule update
+4. Start services
+	- [path_to_docker_service_sh] start nginx-proxy-manager headscale
+5. Configure nginx-proxy-manager to reverse proxy for headscale
+	- Follow nginx-proxy-manger document at https://github.com/NginxProxyManager/nginx-proxy-manager/blob/develop/README.md
+	- It's highly recommended to use SSL to protect the clients
+	- Add http proxy.
+		- The dest URL for headscale is http://headscale:8080, and headscale-ui is http://headscale-ui
+		- headscale needs to be proxied on {YOUR_HOST}/, and headscale-ui on {YOUR_HOST}/web, with the same hostname (including subdomain)
+6. Enjoy
 
-Headscale server setup:
-1. Set your actual server url in config.yaml
-2. Start the service:
-	run as a submodule of docker-service:
-		- docker_service.sh headscale restart
-	or, run directly as a standalone service:
-		- DOCKER_SERVICE=headscale docker-compose up -d
-3. Use the headscale.sh script similar to the headscale tool. It proxies the command to headscale inside the contianer through `docker exec`. e.g.,
-	- headscale.sh -h
-	- headscale.sh users create MYUSER
-4. Follow the instruction in https://github.com/juanfont/headscale/blob/main/docs/running-headscale-container.md to connect from clients
+Notes:
+
+Use headscale.sh as the traditional `headsacale` tool, e.g.,
+	headscale.sh users create MYUSER
+
+headscale-ui can be safely exposed to public network (AFAIK). See headscale-ui site for details:
+	https://github.com/gurucomputing/headscale-ui/blob/master/SECURITY.md
+That said, the nginx-proxy-manager webUI is not safe and you should not expose it in production.
 
 -------------------
 
