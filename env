@@ -1,14 +1,18 @@
 WD=${RWD}/${DOCKER_SERVICE}
 
 COMPOSE=1
-SERVICE_SHELL=/bin/bash
+SUBDOMAIN=vpn
 
 pre_start() {
 	envsubst < ${WD}/config/config.yaml.tmpl > ${WD}/config/config.yaml
 	envsubst < ${WD}/config/derp.yaml.tmpl > ${WD}/config/derp.yaml
+
+	# create db file if it doesn't exist
+	test -f "${WD}/config/db.sqlite" || touch ${WD}/config/db.sqlite
 }
 
 post_stop() {
 	rm ${WD}/config/config.yaml
 	rm ${WD}/config/derp.yaml
 }
+

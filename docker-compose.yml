@@ -3,10 +3,23 @@ services:
     headscale :
         container_name: ${DOCKER_SERVICE} 
         restart: always
+        networks:
+            - proxy-net
         ports:
-            - '8080:8080'
-            - '9090:9090'
+            - '8080'
         volumes:
             - './config:/etc/headscale/'
         image: headscale/headscale
         command: headscale serve
+    headscale-ui:
+        container_name: headscale-ui
+        image: ghcr.io/gurucomputing/headscale-ui:latest
+        restart: always
+        networks:
+            - proxy-net
+        expose:
+            - '80'
+networks:
+    proxy-net:
+        external:
+            name: nginx-proxy-manager_default
