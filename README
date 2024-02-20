@@ -21,14 +21,8 @@ Submodule setup
 	- git submodule init
 	- git submodule update
 4. Start services
-	- [path_to_docker_service_sh] start nginx-proxy-manager headscale
-5. Configure nginx-proxy-manager to reverse proxy for headscale
-	- Follow nginx-proxy-manger document at https://github.com/NginxProxyManager/nginx-proxy-manager/blob/develop/README.md
-	- It's highly recommended to use SSL to protect the clients
-	- Add http proxy.
-		- The dest URL for headscale is http://headscale:8080, and headscale-ui is http://headscale-ui
-		- headscale needs to be proxied on {YOUR_HOST}/, and headscale-ui on {YOUR_HOST}/web, with the same hostname (including subdomain)
-6. Enjoy
+	- [path_to_docker_service_sh] start nginx-proxy headscale
+5. Enjoy
 
 Notes:
 
@@ -37,7 +31,6 @@ Use headscale.sh as the traditional `headsacale` tool, e.g.,
 
 headscale-ui can be safely exposed to public network (AFAIK). See headscale-ui site for details:
 	https://github.com/gurucomputing/headscale-ui/blob/master/SECURITY.md
-That said, the nginx-proxy-manager webUI is not safe and you should not expose it in production.
 
 -------------------
 
