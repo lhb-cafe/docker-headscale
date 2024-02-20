@@ -12,7 +12,7 @@ pre_start() {
 }
 
 post_stop() {
-	rm ${WD}/config/config.yaml
-	rm ${WD}/config/derp.yaml
+	rm -f ${WD}/config/config.yaml
+	rm -f ${WD}/config/derp.yaml
 }
 
