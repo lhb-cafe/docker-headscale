@@ -10,7 +10,7 @@
 #
 # https://myheadscale.example.com:443
 #
-server_url: http://${HOST_NAME}:8080
+server_url: https://${HOST_NAME}:443
 
 # Address to listen to / bind to on the server
 #
@@ -116,7 +116,8 @@ derp:
   #
   # paths:
   #   - /etc/headscale/derp-example.yaml
-  paths: []
+  paths:
+      - /etc/headscale/derp.yaml
 
   # If enabled, a worker will be set up to periodically
   # refresh the given sources and update the derpmap
@@ -216,7 +217,7 @@ acl_policy_path: ""
 #
 dns_config:
   # Whether to prefer using Headscale provided DNS or use local.
-  override_local_dns: true
+  override_local_dns: false
 
   # List of DNS servers to expose to clients.
   nameservers:
