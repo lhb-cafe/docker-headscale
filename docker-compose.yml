@@ -12,19 +12,23 @@ services:
           - VIRTUAL_HOST=${HOST_NAME}
           - VIRTUAL_PORT=8080
           - VIRTUAL_PATH=/
+          - LETSENCRYPT_HOST=${HOST_NAME}
         networks:
           - proxy-net
         command: serve
     headscale-ui:
         container_name: headscale-ui
-        image: ghcr.io/gurucomputing/headscale-ui:latest
+        image: ghcr.io/gurucomputing/headscale-ui:2024.10.10
         restart: always
         expose:
-          - '80'
+          - '8080'
+        ports:
+          - '8080:8080'
         environment:
           - VIRTUAL_HOST=${HOST_NAME}
-          - VIRTUAL_PORT=80
+          - VIRTUAL_PORT=8080
           - VIRTUAL_PATH=/web
+          - LETSENCRYPT_HOST=${HOST_NAME}
         networks:
           - proxy-net
 
